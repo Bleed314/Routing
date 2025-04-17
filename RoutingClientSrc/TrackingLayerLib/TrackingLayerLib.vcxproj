@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A6FD8DC2-1ABA-43E4-991E-2BEE6D754F25}</ProjectGuid>
+    <Keyword>QtVS_v302</Keyword>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Temp\$(Configuration)_$(PlatformName)\$(ProjectName)</OutDir>
+    <IntDir>$(SolutionDir)Temp\$(Configuration)_$(PlatformName)\$(ProjectName)\Intermediate</IntDir>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>msvc2015_64</QtInstall>
+    <QtModules>core;gui</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>msvc2015_64</QtInstall>
+    <QtModules>core;gui;network</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PreprocessorDefinitions>TRACKINGLAYERLIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PreprocessorDefinitions>TRACKINGLAYERLIB_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>GeneratedFiles\$(ConfigurationName);GeneratedFiles;.\GeneratedFiles\$(ConfigurationName)_$(PlatformName);.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;$(SolutionDir)3rdPart\Include;$(SolutionDir)3rdPart\Include\ObjectSerial\include;$(SolutionDir)3rdPart\Include\XTArithmetic;$(SolutionDir)\Src\Library\Scenario\SerialScenario;$(SolutionDir)Src\Library\Scenario\SerialModel;$(SolutionDir)Src\Library\Scenario;$(SolutionDir)Src\Library\UILibrary;$(SolutionDir)Src\Library\LocalTransfer;$(SolutionDir)Src\Library\3rdLibrary\NetworkCore;$(SolutionDir)Src\Library;$(EV_Globesdk_Debugdll64)\..\include;$(QTDIR64)\include;$(QTDIR64)\include\QtCore;$(QTDIR64)\include\QtGui;$(QTDIR64)\include\QtWidgets;$(QTDIR64)\include\QtXml;$(QTDIR64)\include\QtXmlPatterns;$(QTDIR64)\include\QtSql;$(QTDIR64)\include\QtSvg;$(QTDIR64)\include\QtMultimedia;$(QTDIR64)\include\QtOpenGL;$(QTDIR64)\include\QtNetwork;$(QTDIR64)\include\QtWebKit;$(QTDIR64)\include\QtWebEngine;$(QTDIR64)\include\QtWebEngineCore;$(QTDIR64)\include\QtWebEngineWidgets;$(QTDIR64)\include\ActiveQt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdPart\Lib\$(Configuration)_$(PlatformName);$(SolutionDir)Lib\$(Configuration)_$(PlatformName);$(EV_Globesdk_Debugdll64)\..\lib;$(QTDIR64)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>qtmain.lib;Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;EV_Core.lib;EV_MathEngine.lib;EV_Graphic.lib;EV_GlobeControl.lib;EV_Color.lib;EV_SpatialInterface.lib;EV_SpatialObject.lib;EV_Geometry3D.lib;EV_Symbol.lib;EV_Spatial3DCalculator.lib;EV_Display.lib;EV_MapControl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)Lib\$(Configuration)_$(PlatformName)\$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy $(OutDir)$(TargetFileName) $(SolutionDir)OutPut\$(Configuration)_$(PlatformName) /y </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <QtMoc Include="DrivingInfoWgt.h" />
+    <ClInclude Include="CooTrans.h" />
+    <ClInclude Include="JQNet.h" />
+    <QtMoc Include="NameRouteDlg.h" />
+    <ClInclude Include="PolylineDecoder.h" />
+    <QtMoc Include="RouteComputerAndPaint.h" />
+    <ClInclude Include="RouteStrut.h" />
+    <QtMoc Include="SelectRouteWgt.h" />
+    <QtMoc Include="SelectPointTrackingWgt.h" />
+    <ClInclude Include="trackinglayerlib_global.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DrivingInfoWgt.cpp" />
+    <ClCompile Include="JQNet.cpp" />
+    <ClCompile Include="NameRouteDlg.cpp" />
+    <ClCompile Include="PolylineDecoder.cc" />
+    <ClCompile Include="RouteComputerAndPaint.cpp" />
+    <ClCompile Include="SelectPointTrackingWgt.cpp" />
+    <ClCompile Include="SelectRouteWgt.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="DrivingInfoWgt.ui">
+      <FileType>Document</FileType>
+    </QtUic>
+    <QtUic Include="NameRouteDlg.ui" />
+    <QtUic Include="SelectPointTrackingWgt.ui" />
+    <QtUic Include="SelectRouteWgt.ui" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
